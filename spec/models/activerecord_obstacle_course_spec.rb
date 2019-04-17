@@ -272,8 +272,9 @@ describe 'ActiveRecord Obstacle Course' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    order = Order.find(@order_3.id)
-    grouped_items = (order.items).group(:name)
+    # order = Order.find(@order_3.id)
+    # grouped_items = (order.items).group(:name)
+    grouped_items = Item.joins(orders: :items).where('orders.id =?', @order_3.id).group(:name)
     # ------------------------------------------------------------
 
     # Expectation
